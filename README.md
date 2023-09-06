@@ -1,35 +1,59 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
 
-# What is Tiny Tapeout?
+# 何のプロジェクト？
+[TinyTapeout](https://tinytapeout.com)というサービスを利用してみたという体験記的なプロジェクトです。  
+ちなみに、[TinyTapeout](https://tinytapeout.com)の4回目を利用しました。
 
-TinyTapeout is an educational project that aims to make it easier and cheaper than ever to get your digital designs manufactured on a real chip!
+## [TinyTapeout](https://tinytapeout.com)とは？
+約100万円で半導体チップが作れる[ChipIgnite](https://efabless.com/)というサービスがあるのですが、そのユーザエリア（回路を記述するエリア）：10mm x 10mmをみんなでシェアすることで1エリア約1万円で半導体チップが作れるというサービスです。  
+当然、1エリアは非常に小さくなるので、7セグコントローラくらいのサイズの回路しかできませんが、初心者が始めて半導体チップ製造を体験するには非常に良いサービスなのです。  
 
-Go to https://tinytapeout.com for instructions!
+# 何を作ったの？
+LLaMa2をPC上で動作させて、自動生成させたVerilogの8bitカウンターです。  
+なぜ、自動生成なのか？は、[Edge_Circuit_Designer](https://github.com/noritsuna/Edge_Circuit_Designer) をご覧ください。
 
-## How to change the Wokwi project
+## 使ったプロンプト
+- Prompt
+```
+Please generate a 8 bits counter in verilog with the following conditions. The argument to be used are input wire [7:0] ui_in, output wire [7:0] uo_out, input  wire [7:0] uio_in, output wire [7:0] uio_out, output wire [7:0] uio_oe, input wire ena, input wire clk, input wire rst_n. The counter variable shall be reg [7:0] count. reg [7:0] count is assign to output wire [7:0] uo_out. The input should only be count. The output should only be count. Count up the count variable by increasing the count variable by 1. The module name is tt_um_noritsuna_8bitcounter_AI.
+```
 
-Edit the [info.yaml](info.yaml) and change the wokwi_id to match your project.
+# [TinyTapeout](https://tinytapeout.com)へ投稿するには？
+## Verilogソースを書く
+[https://github.com/TinyTapeout/tt04-verilog-demo](https://github.com/TinyTapeout/tt04-verilog-demo)をforkします。  
+作りたい機能のVerilogのファイルを作ります。そもそも大きな回路は作れませんので、サンプルを見ながら作れば、問題ないと思います。  
+また、cocotbによるテストベンチを書くこともできますが、作らなくても投稿は可能です。
 
-## How to enable the GitHub actions to build the ASIC files
+### トラブルポイント
+- モジュール名には、「tt_um_」というプリフィックスが必要
+    - ファイル名などを同じようにプリフィックスが必要
 
-Please see the instructions for:
+## GDSファイルを作る
+GDSファイルが提出するファイルとなります。  
+生成方法は、forkして作ったプロジェクト（Verilogファイル）をコミットして、Github Actionでビルドします。  
+Github Actionで、GDSをクリックするだけです。
 
-- [Enabling GitHub Actions](https://tinytapeout.com/faq/#when-i-commit-my-change-the-gds-action-isnt-running)
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+![Github Action](images/github_actions.png)
 
-## How does it work?
+GDSが正常に生成されると下記のような画面が表示されます。
 
-When you edit the info.yaml to choose a different ID, the [GitHub Action](.github/workflows/gds.yaml) will fetch the digital netlist of your design from Wokwi.
+![GDS生成](images/github_gds.png)
 
-After that, the action uses the open source ASIC tool called [OpenLane](https://www.zerotoasiccourse.com/terminology/openlane/) to build the files needed to fabricate an ASIC.
+### トラブルポイント
+- Github PagesをGithub Actionモードで有効にする
 
-## Resources
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://discord.gg/rPK2nSjxy8)
+## [TinyTapeout](https://tinytapeout.com)へ投稿する
+[TinyTapeout](https://tinytapeout.com)にMyPageを作ります。  
+[こちら](https://app.tinytapeout.com/projects/create)から作成できるので、作成します。  
+![TinyTapeoutのsubmit画面](images/tinytapeout_submit.png)
 
-## What next?
+作成時にリンクさせるGithubのURLを入力する欄がありますので、そこの入れればOKです。  
+その後、入金画面になりますので、必要な支払いをします。  
+![入金後の画面](images/tinytapeout_mypage.png)
 
-- Share your GDS on Twitter, tag it [#tinytapeout](https://twitter.com/hashtag/tinytapeout?src=hashtag_click) and [link me](https://twitter.com/matthewvenn)!
+入金が完了すると、submit可能となりますので、submitボタンを押すとGDSが登録されます。  
+![Submit成功画面](images/tinytapeout_myproject.png)
+
+成功すれば、このように配置されます。あとは、到着を待つだけです！  
+![](images/tinytapeout_tile.png)
