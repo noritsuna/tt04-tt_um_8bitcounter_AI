@@ -16,8 +16,9 @@ module tt_um_blink(rst, q);
      else cnt <= cnt + 1;
    end
 
-   wire n[20:0];
+   wire [20:0] n;
    assign n[20:1] = ~n[19:0];
    assign n[0] = ~n[20];
+   assign ck = ~n[0];
 		    
 endmodule
