@@ -42,8 +42,6 @@ GDSが正常に生成されると下記のような画面が表示されます�
 ### トラブルポイント
 - Github PagesをGithub Actionモードで有効にする。リポジトリのSettings内のPagesの「Build and deployment」を、デフォルトの”Deploy from a branch"から"GitHub Actions"に変更する。
 
-branchモードなので、actionモードのほうで！
-
 ## [TinyTapeout](https://tinytapeout.com)へ投稿する
 [TinyTapeout](https://tinytapeout.com)にMyPageを作ります。  
 [こちら](https://app.tinytapeout.com/projects/create)から作成できるので、作成します。  
