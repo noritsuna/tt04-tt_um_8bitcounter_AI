@@ -7,7 +7,7 @@ module tt_um_blink(rst_n, clk, ena, q);
    wire ck;
    
    always @(posedge ck) begin
-     if (rst == 1'b1) cnt <= 0;
+     if (rst_n == 1'b0) cnt <= 0;
      else cnt <= cnt + 1;
    end
 
