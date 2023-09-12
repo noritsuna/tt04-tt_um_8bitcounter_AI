@@ -19,6 +19,7 @@ module tt_um_blink(
       else cnt <= cnt + 1;
    end
 
+   wire N1, N2, N3;
    not (N1, N2);
    not (N2, N3);
    not (N3, N1);
