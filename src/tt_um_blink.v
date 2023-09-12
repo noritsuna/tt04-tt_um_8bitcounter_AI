@@ -18,10 +18,15 @@ module tt_um_blink(
       if (rst_n == 1'b0) cnt <= 0;
       else cnt <= cnt + 1;
    end
+
+   not (N1, N2);
+   not (N2, N3);
+   not (N3, N1);
+   buf (N3, Ock)
    
-   wire [20:0] n;
-   assign n[20:1] = ~n[19:0];
-   assign n[0] = ~n[20];
-   assign ck = ~n[0];
+//   wire [20:0] n;
+//   assign n[20:1] = ~n[19:0];
+//   assign n[0] = ~n[20];
+//   assign ck = ~n[0];
 		    
 endmodule
