@@ -22,7 +22,7 @@ module tt_um_blink(
    not (N1, N2);
    not (N2, N3);
    not (N3, N1);
-   buf (N3, Ock)
+   buf (N3, ck);
    
 //   wire [20:0] n;
 //   assign n[20:1] = ~n[19:0];
