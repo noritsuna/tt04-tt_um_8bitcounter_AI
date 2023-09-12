@@ -13,6 +13,9 @@ module tt_um_blink(
    wire 	   ck;
 
    assign uo_out = cnt[7:0];
+
+   assign uio_out = count[7:0];
+   assign uio_oe = ena == 1'b1 && cnt < 8'b11111111;
    
    always @(posedge ck) begin
       if (rst_n == 1'b0) cnt <= 0;
