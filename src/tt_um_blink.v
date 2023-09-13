@@ -12,7 +12,8 @@ module tt_um_blink(
    reg [7:0] 	   cnt;
    wire 	   ck;
 
-   assign uo_out = cnt[7:0];
+   assign ui_in = N1;
+   assign uo_out = {cnt[7:1], N3);
    assign uio_oe = ena == 1'b1 && cnt < 8'b11111111;
    
    always @(posedge ck) begin
@@ -23,9 +24,9 @@ module tt_um_blink(
    wire N1, N2, N3;
    not (N1, N2);
    not (N2, N3);
-   not (N3, N1);
-//   buf (N3, ck);
-   assign ck = N3;
+//   not (N3, N1);
+   buf (N3, ck);
+//   assign ck = N3;
    
 //   wire [20:0] n;
 //   assign n[20:1] = ~n[19:0];
