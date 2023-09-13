@@ -13,7 +13,7 @@ module tt_um_blink(
    wire 	   ck;
 
    assign ui_in = N1;
-   assign uo_out = {cnt[7:1], N3);
+   assign uo_out = {cnt[7:1], N3};
    assign uio_oe = ena == 1'b1 && cnt < 8'b11111111;
    
    always @(posedge ck) begin
