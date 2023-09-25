@@ -10,8 +10,8 @@ module tt_um_blink(
 		   input wire 	     rst_n     // reset_n - low to reset
 		   );
 
-   reg [7:0] 			     count;
-   assign uo_out  = count[7:0];
+   reg [15:0] 			     count;
+   assign uo_out  = count[15:8];
    assign uio_out = count[7:0];
    assign uio_oe = 8'b11111111; // set bidir as outputs
    always @(posedge clk) begin
